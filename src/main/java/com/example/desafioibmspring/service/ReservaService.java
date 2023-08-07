@@ -16,4 +16,11 @@ public class ReservaService {
         List<Reserva> list = reservaRepository.findAll();
         return list;
     }
+
+    public Reserva insert(Reserva obj) {
+        obj.setId(null);
+        obj.setStatus(Reserva.Status.CONFIRMADA);
+        obj = reservaRepository.save(obj);
+        return obj;
+    }
 }

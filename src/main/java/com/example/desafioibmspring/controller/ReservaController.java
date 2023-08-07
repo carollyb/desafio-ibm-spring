@@ -23,6 +23,12 @@ public class ReservaController {
         return ResponseEntity.ok().body(list);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Reserva> findById(@PathVariable Integer id) {
+        Reserva reserva = reservaService.findById(id);
+        return ResponseEntity.ok().body(reserva);
+    }
+
     @PostMapping
     public ResponseEntity<Void> insert(@RequestBody Reserva reserva) {
         Reserva obj = reservaService.insert(reserva);

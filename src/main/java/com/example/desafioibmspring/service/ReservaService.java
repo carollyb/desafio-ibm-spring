@@ -4,6 +4,7 @@ import com.example.desafioibmspring.domain.Reserva;
 import com.example.desafioibmspring.dto.ReservaDTO;
 import com.example.desafioibmspring.repository.ReservaRepository;
 import com.example.desafioibmspring.service.exceptions.ObjectNotFoundException;
+import com.example.desafioibmspring.utils.EnumUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,8 @@ public class ReservaService {
     }
 
     public Reserva fromDTO(ReservaDTO obj) {
+        EnumUtil.parseStatus(obj.getStatus().name());
+
         return new Reserva((obj.getId()), obj.getNomeHospede(), obj.getDataInicio(), obj.getDataFim(), obj.getQuantidadePessoas(), obj.getStatus());
     }
 

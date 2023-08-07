@@ -18,7 +18,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class Reserva implements Serializable {
-    enum Status {
+    public enum Status {
         PENDENTE,
         CONFIRMADA,
         CANCELADA

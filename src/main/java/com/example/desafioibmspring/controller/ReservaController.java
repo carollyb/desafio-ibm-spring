@@ -3,7 +3,6 @@ package com.example.desafioibmspring.controller;
 import com.example.desafioibmspring.domain.Reserva;
 import com.example.desafioibmspring.dto.ReservaDTO;
 import com.example.desafioibmspring.service.ReservaService;
-import com.example.desafioibmspring.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

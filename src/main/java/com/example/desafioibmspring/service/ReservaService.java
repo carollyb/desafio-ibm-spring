@@ -53,4 +53,8 @@ public class ReservaService {
         return new Reserva((obj.getId()), obj.getNomeHospede(), obj.getDataInicio(), obj.getDataFim(), obj.getQuantidadePessoas(), obj.getStatus());
     }
 
+    public void delete(Integer id) {
+        reservaRepository.deleteById(id);
+    }
+
 }

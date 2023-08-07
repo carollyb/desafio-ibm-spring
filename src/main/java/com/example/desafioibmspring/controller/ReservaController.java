@@ -45,4 +45,10 @@ public class ReservaController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        reservaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.desafioibmspring.service;
 
 import com.example.desafioibmspring.domain.Reserva;
+import com.example.desafioibmspring.dto.ReservaDTO;
 import com.example.desafioibmspring.repository.ReservaRepository;
 import com.example.desafioibmspring.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,23 @@ public class ReservaService {
         obj = reservaRepository.save(obj);
         return obj;
     }
+
+    public Reserva update(Reserva obj) {
+        Reserva att = findById(obj.getId());
+        updateData(att, obj);
+        return reservaRepository.save(att);
+    }
+
+    private void updateData(Reserva novo, Reserva antigo) {
+        novo.setNomeHospede(antigo.getNomeHospede());
+        novo.setDataInicio(antigo.getDataInicio());
+        novo.setDataFim(antigo.getDataFim());
+        novo.setQuantidadePessoas(antigo.getQuantidadePessoas());
+        novo.setStatus(antigo.getStatus());
+    }
+
+    public Reserva fromDTO(ReservaDTO obj) {
+        return new Reserva((obj.getId()), obj.getNomeHospede(), obj.getDataInicio(), obj.getDataFim(), obj.getQuantidadePessoas(), obj.getStatus());
+    }
+
 }

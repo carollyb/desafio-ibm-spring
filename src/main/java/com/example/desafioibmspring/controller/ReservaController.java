@@ -31,10 +31,10 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Reserva reserva) {
+    public ResponseEntity<Reserva> insert(@RequestBody Reserva reserva) {
         Reserva obj = reservaService.insert(reserva);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(obj);
     }
 
     @PutMapping("/{id}")

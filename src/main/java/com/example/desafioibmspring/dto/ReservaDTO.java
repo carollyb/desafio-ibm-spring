@@ -1,6 +1,7 @@
 package com.example.desafioibmspring.dto;
 
 import com.example.desafioibmspring.domain.Reserva;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,11 +15,19 @@ import java.util.Date;
 @Getter
 @Setter
 public class ReservaDTO implements Serializable {
+
     private Integer id;
+
     private String nomeHospede;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataInicio;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataFim;
+
     private Integer quantidadePessoas;
+
     private Reserva.Status status;
 
     public ReservaDTO(Reserva obj) {

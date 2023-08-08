@@ -45,10 +45,10 @@ public class ReservaController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        reservaService.delete(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/{id}/cancelar")
+    public ResponseEntity<Reserva> delete(@PathVariable Integer id) {
+        Reserva cancelada = reservaService.delete(id);
+        return ResponseEntity.ok().body(cancelada);
     }
 
 }

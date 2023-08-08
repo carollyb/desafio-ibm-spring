@@ -53,8 +53,11 @@ public class ReservaService {
         return new Reserva((obj.getId()), obj.getNomeHospede(), obj.getDataInicio(), obj.getDataFim(), obj.getQuantidadePessoas(), obj.getStatus());
     }
 
-    public void delete(Integer id) {
-        reservaRepository.deleteById(id);
+    public Reserva delete(Integer id) {
+        Reserva att = findById(id);
+        att.setStatus(Reserva.Status.CANCELADA);
+        reservaRepository.save(att);
+        return att;
     }
 
 }

@@ -15,19 +15,13 @@ import java.util.Date;
 @Getter
 @Setter
 public class ReservaDTO implements Serializable {
-
     private Integer id;
-
     private String nomeHospede;
-
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataInicio;
-
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataFim;
-
     private Integer quantidadePessoas;
-
     private Reserva.Status status;
 
     public ReservaDTO(Reserva obj) {

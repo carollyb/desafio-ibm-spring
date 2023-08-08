@@ -38,7 +38,7 @@ public class Reserva implements Serializable {
     private Status status;
 
 
-    public Reserva(int id, String nomeHospede, Date dataInicio, Date dataFim, int quantidadePessoas) {
+    public Reserva(Integer id, String nomeHospede, Date dataInicio, Date dataFim, Integer quantidadePessoas) {
         this.id = id;
         this.nomeHospede = nomeHospede;
         this.dataInicio = dataInicio;
@@ -47,7 +47,7 @@ public class Reserva implements Serializable {
         this.status = Status.CONFIRMADA;
     }
 
-    public Reserva(int id, String nomeHospede, Date dataInicio, Date dataFim, int quantidadePessoas, Status status) {
+    public Reserva(Integer id, String nomeHospede, Date dataInicio, Date dataFim, Integer quantidadePessoas, Status status) {
         this.id = id;
         this.nomeHospede = nomeHospede;
         this.dataInicio = dataInicio;

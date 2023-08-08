@@ -55,10 +55,10 @@ public class ReservaService {
     }
 
     public Reserva delete(Integer id) {
-        Reserva att = findById(id);
-        att.setStatus(Reserva.Status.CANCELADA);
-        reservaRepository.save(att);
-        return att;
+        Optional<Reserva> att = reservaRepository.findById(id);
+        att.get().setStatus(Reserva.Status.CANCELADA);
+        reservaRepository.save(att.get());
+        return att.get();
     }
 
 }

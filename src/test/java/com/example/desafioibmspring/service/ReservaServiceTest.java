@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,10 +90,15 @@ public class ReservaServiceTest {
     }
 
     @Test
-    public void testDeleteReserva() {
+    public void testDeleteReserva() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Integer reservaId = 1;
-        reservaService.delete(reservaId);
-        verify(reservaRepository, times(1)).deleteById(reservaId);
+        Reserva reserva = new Reserva(reservaId, "nome teste", sdf.parse("2023-08-10"), sdf.parse("2023-08-15"), 4);
+
+        when(reservaRepository.findById(reservaId)).thenReturn(Optional.of(reserva));
+
+        Reserva cancelada = reservaService.delete(reservaId);
+        verify(reservaRepository, times(1)).save(cancelada);
     }
 
     @Test

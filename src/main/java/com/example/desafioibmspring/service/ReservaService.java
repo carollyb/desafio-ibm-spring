@@ -36,7 +36,8 @@ public class ReservaService {
     public Reserva update(Reserva obj) {
         Reserva att = findById(obj.getId());
         updateData(att, obj);
-        return reservaRepository.save(att);
+        reservaRepository.save(att);
+        return att;
     }
 
     private void updateData(Reserva novo, Reserva antigo) {

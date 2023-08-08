@@ -38,11 +38,11 @@ public class ReservaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@RequestBody ReservaDTO dto, @PathVariable Integer id) {
+    public ResponseEntity<Reserva> update(@RequestBody ReservaDTO dto, @PathVariable Integer id) {
         Reserva obj = reservaService.fromDTO(dto);
         obj.setId(id);
-        reservaService.update(obj);
-        return ResponseEntity.noContent().build();
+        Reserva atualizada = reservaService.update(obj);
+        return ResponseEntity.ok().body(atualizada);
     }
 
     @DeleteMapping("/{id}/cancelar")

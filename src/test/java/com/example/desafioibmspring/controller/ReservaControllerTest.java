@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -85,7 +84,7 @@ public class ReservaControllerTest {
 
     @Test
     public void testDeleteReserva() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/reservas/1"))
-                .andExpect(status().isNoContent());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/reservas/1/cancelar"))
+                .andExpect(status().isOk());
     }
 }

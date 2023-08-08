@@ -36,7 +36,8 @@ public class ReservaService {
     public Reserva update(Reserva obj) {
         Reserva att = findById(obj.getId());
         updateData(att, obj);
-        return reservaRepository.save(att);
+        reservaRepository.save(att);
+        return att;
     }
 
     private void updateData(Reserva novo, Reserva antigo) {
@@ -53,8 +54,11 @@ public class ReservaService {
         return new Reserva((obj.getId()), obj.getNomeHospede(), obj.getDataInicio(), obj.getDataFim(), obj.getQuantidadePessoas(), obj.getStatus());
     }
 
-    public void delete(Integer id) {
-        reservaRepository.deleteById(id);
+    public Reserva delete(Integer id) {
+        Optional<Reserva> att = reservaRepository.findById(id);
+        att.get().setStatus(Reserva.Status.CANCELADA);
+        reservaRepository.save(att.get());
+        return att.get();
     }
 
 }

@@ -31,24 +31,24 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Reserva reserva) {
+    public ResponseEntity<Reserva> insert(@RequestBody Reserva reserva) {
         Reserva obj = reservaService.insert(reserva);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(obj);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@RequestBody ReservaDTO dto, @PathVariable Integer id) {
+    public ResponseEntity<Reserva> update(@RequestBody ReservaDTO dto, @PathVariable Integer id) {
         Reserva obj = reservaService.fromDTO(dto);
         obj.setId(id);
-        reservaService.update(obj);
-        return ResponseEntity.noContent().build();
+        Reserva atualizada = reservaService.update(obj);
+        return ResponseEntity.ok().body(atualizada);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        reservaService.delete(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/{id}/cancelar")
+    public ResponseEntity<Reserva> delete(@PathVariable Integer id) {
+        Reserva cancelada = reservaService.delete(id);
+        return ResponseEntity.ok().body(cancelada);
     }
 
 }

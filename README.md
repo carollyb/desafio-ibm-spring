@@ -5,28 +5,29 @@
 O objetivo deste desafio é criar uma aplicação que permita que hóspedes façam reservas em uma casa de temporada através de uma API Rest. A aplicação deverá possibilitar o agendamento de estadias em datas específicas, com informações do hóspede e quantidade de pessoas
 
 ## Conteúdo
-  - [Especificação dos endpoints](#especificação-dos-endpoints)
-    - [POST](#post)
-      - [/reservas](#reservas)
-    - [GET](#get)
-      - [`/reservas`](#reservas-1)
-      - [`/reservas/:id`](#reservasid)
-    - [PUT](#put)
-      - [/reservas/:id](#reservasid-1)
-    - [DELETE](#delete)
-      - [/reservas/:id/cancelar](#reservasidcancelar)
-  - [Desenvolvimento](#desenvolvimento)
-    - [Testes](#testes)
-    - [Padrões de desenvolvimento](#padrões-de-desenvolvimento)
-    - [Tratamento de Erros](#tratamento-de-erros)
-  - [Tecnologias](#tecnologias)
-  - [Melhorias possíveis](#melhorias-possíveis)
+
+- [Especificação dos endpoints](#especificação-dos-endpoints)
+  - [POST](#post)
+    - [/reservas](#reservas)
+  - [GET](#get)
+    - [`/reservas`](#reservas-1)
+    - [`/reservas/:id`](#reservasid)
+  - [PUT](#put)
+    - [/reservas/:id](#reservasid-1)
+  - [DELETE](#delete)
+    - [/reservas/:id/cancelar](#reservasidcancelar)
+- [Desenvolvimento](#desenvolvimento)
+  - [Testes](#testes)
+  - [Padrões de desenvolvimento](#padrões-de-desenvolvimento)
+  - [Tratamento de Erros](#tratamento-de-erros)
+- [Tecnologias](#tecnologias)
+- [Melhorias possíveis](#melhorias-possíveis)
 
 ## Especificação dos endpoints
 
 ### POST
 
-#### /reservas
+#### `/reservas`
 
 > Cria uma reserva e retorna um JSON com as informações
 
@@ -120,7 +121,7 @@ GET http://{host}/reservas/1
 
 ### PUT
 
-#### /reservas/:id
+#### `/reservas/:id`
 
 > Atualiza uma reserva existente
 
@@ -157,7 +158,7 @@ PUT https://{host}/reservas/1
 
 ### DELETE
 
-#### /reservas/:id/cancelar
+#### `/reservas/:id/cancelar`
 
 > Cancela uma reserva
 
@@ -199,7 +200,7 @@ DELETE https://{host}/reservas/1/cancelar
 
 ## Tecnologias
 
-- [x] Java, Spring Boot, H2 Database
+- [x] Java 17, Spring Boot, H2 Database, Gerenciador de Pacotes Maven
 
 ## Melhorias possíveis
 

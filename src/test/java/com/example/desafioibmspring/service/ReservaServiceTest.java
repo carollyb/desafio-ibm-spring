@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -26,8 +27,9 @@ public class ReservaServiceTest {
     private ReservaService reservaService;
 
     @Test
-    public void testInsertReserva() {
-        Reserva reserva = new Reserva(1, "nome teste", new Date("10/08/2023"), new Date("15/08/2023"), 4);
+    public void testInsertReserva() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Reserva reserva = new Reserva(1, "nome teste", sdf.parse("2023-08-10"), sdf.parse("2023-08-15"), 4);
         when(reservaRepository.save(any(Reserva.class))).thenReturn(reserva);
 
         Reserva reservaInserida = reservaService.insert(reserva);
@@ -44,11 +46,12 @@ public class ReservaServiceTest {
     }
 
     @Test
-    public void testFindAllReservas() {
+    public void testFindAllReservas() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Integer reservaId = 1;
         Integer reservaId2 = 2;
-        Reserva reserva1 = new Reserva(reservaId, "nome teste", new Date("10/08/2023"), new Date("15/08/2023"), 4);
-        Reserva reserva2 = new Reserva(reservaId2, "nome teste 2", new Date("20/08/2023"), new Date("25/08/2023"), 2);
+        Reserva reserva1 = new Reserva(reservaId, "nome teste", sdf.parse("2023-08-10"), sdf.parse("2023-08-15"), 4);
+        Reserva reserva2 = new Reserva(reservaId2, "nome teste 2", sdf.parse("2023-08-20"), sdf.parse("2023-08-25"), 2);
 
         when(reservaRepository.findAll()).thenReturn(Arrays.asList(reserva1, reserva2));
 
@@ -59,9 +62,10 @@ public class ReservaServiceTest {
     }
 
     @Test
-    public void testFindReservaByExistentId() {
+    public void testFindReservaByExistentId() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Integer reservaId = 1;
-        Reserva reserva = new Reserva(reservaId, "nome teste", new Date("10/08/2023"), new Date("15/08/2023"), 4);
+        Reserva reserva = new Reserva(reservaId, "nome teste", sdf.parse("2023-08-10"), sdf.parse("2023-08-15"), 4);
 
         when(reservaRepository.findById(reservaId)).thenReturn(Optional.of(reserva));
         Reserva reservaEncontrada = reservaService.findById(reservaId);
@@ -94,10 +98,11 @@ public class ReservaServiceTest {
     }
 
     @Test
-    public void testUpdateReserva() {
+    public void testUpdateReserva() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Integer reservaId = 1;
-        Reserva reservaAtualizada = new Reserva(reservaId, "nome atualizado", new Date("10/08/2023"), new Date("15/08/2023"), 4);
-        Reserva reservaExistente = new Reserva(reservaId, "nome teste", new Date("10/08/2023"), new Date("15/08/2023"), 4);
+        Reserva reservaAtualizada = new Reserva(reservaId, "nome atualizado", sdf.parse("2023-08-10"), sdf.parse("2023-08-15"), 4);
+        Reserva reservaExistente = new Reserva(reservaId, "nome teste", sdf.parse("2023-08-10"), sdf.parse("2023-08-15"), 4);
 
         when(reservaRepository.findById(reservaId)).thenReturn(Optional.of(reservaExistente));
         when(reservaRepository.save(any(Reserva.class))).thenReturn(reservaAtualizada);

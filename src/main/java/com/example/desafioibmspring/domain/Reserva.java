@@ -27,10 +27,10 @@ public class Reserva implements Serializable {
 
     private String nomeHospede;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dataInicio;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dataFim;
 
     private Integer quantidadePessoas;

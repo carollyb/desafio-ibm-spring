@@ -34,27 +34,29 @@ public class ReservaControllerTest {
     private ReservaController reservaController;
 
     @BeforeEach
-    public void setup() {
-        ReservaDTO reservaDTO = new ReservaDTO(1, "nome", new Date("12/12/2023"), new Date("22/12/2023"), 2, Reserva.Status.CONFIRMADA);
+    public void setup() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        ReservaDTO reservaDTO = new ReservaDTO(1, "nome", sdf.parse("2023-12-12"), sdf.parse("2023-12-22"), 2, Reserva.Status.CONFIRMADA);
     }
 
     @Test
     public void testInsertReserva() throws Exception {
-        Reserva reservaInserida = new Reserva(1, "nome", new Date("12/12/2023"), new Date("22/12/2023"), 2);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Reserva reservaInserida = new Reserva(1, "nome", sdf.parse("2023-12-12"), sdf.parse("2023-12-22"), 2);
         when(reservaService.insert(any(Reserva.class))).thenReturn(reservaInserida);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/reservas")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":1,\"nomeHospede\":\"nome\",\"dataInicio\":\"12/12/2023\",\"dataFim\":\"22/12/2023\",\"quantidadePessoas\":2}"))
+                .content("{\"id\":1,\"nomeHospede\":\"nome\",\"dataInicio\":\"2023-12-12\",\"dataFim\":\"2023-12-22\",\"quantidadePessoas\":2}"))
                 .andExpect(status().isCreated())
                 .andExpect(MockMvcResultMatchers.header().string("location", "http://localhost/reservas/1"));
     }
 
     @Test
     public void testFindReservaById() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Integer reservaId = 1;
-        Reserva reservaEncontrada = new Reserva(reservaId, "nome", sdf.parse("01/12/2023"), sdf.parse("10/12/2023"), 2, Reserva.Status.CONFIRMADA);
+        Reserva reservaEncontrada = new Reserva(reservaId, "nome", sdf.parse("2023-12-01"), sdf.parse("2023-12-10"), 2, Reserva.Status.CONFIRMADA);
 
         when(reservaService.findById(reservaId)).thenReturn(reservaEncontrada);
 
@@ -62,8 +64,8 @@ public class ReservaControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.nomeHospede").value("nome"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.dataInicio").value("01/12/2023"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.dataFim").value("10/12/2023"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.dataInicio").value("2023-12-01"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.dataFim").value("2023-12-10"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.quantidadePessoas").value(2))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").value("CONFIRMADA"));
     }
